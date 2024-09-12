@@ -14,6 +14,7 @@
     "@types/node": "^22.5.4"
   },
   "dependencies": {
-    "@datastructures-js/priority-queue": "^6.3.1"
+    "@datastructures-js/priority-queue": "^6.3.1",
+    "typescript": "^5.6.2"
   }
 }

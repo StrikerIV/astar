@@ -1,4 +1,4 @@
-import { PriorityQueue } from '@datastructures-js/priority-queue';
+import { PriorityQueue } from "@datastructures-js/priority-queue";
 
 interface Dictionary<T> {
   [Key: string]: T;
@@ -24,44 +24,47 @@ class Point {
 }
 
 const grid: (number | string)[][] = [
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-  [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+  [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+  [1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0],
+  [0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0],
+  [0, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1],
+  [0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0],
+  [1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0],
+  [0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+  [0, 1, 1, 1, 0, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1],
+  [0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0],
+  [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1],
+  [1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+  [0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1],
+  [1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0],
+  [0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0],
+  [0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0],
+  [0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0],
+  [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0],
+  [1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0],
 ];
 
 // The order of the offsets would normally be N E S W, but this makes it the way the website has
 // Also, are diagonals allowed? If so, add offsets to support that
 const neighborOffsets = [
-  [0, 1], // east
-  [0, -1], // west
-  [-1, 0], // north
-  [1, 0], // south
+  [1, 0], // east
+  [-1, 0], // west
+  [0, -1], // north
+  [0, 1], // south
 ];
 
-const frontier = new PriorityQueue<PriortiyPoint>(
-  (a, b) => a.priority - b.priority
-);
+const frontier = new PriorityQueue<PriortiyPoint>((a, b) => a.priority - b.priority);
 const came_from: Dictionary<Point> = {};
 const cost: Dictionary<number> = {};
 
 function run() {
   const start = new Point(0, 0);
-  const goal = new Point(14, 14);
+  const goal = new Point(19, 19);
 
   if (!isValid(start) || !isValid(goal)) {
-    console.log('Start or end point is invalid.');
+    console.log("Start or end point is invalid.");
     return;
   }
 
@@ -103,27 +106,36 @@ function run() {
     path.push(current);
     current = came_from[current.key()];
 
-    if(!current) {
-      console.log("No complete path could be found for the given starting and ending points.")
+    if (!current) {
+      console.log("No complete path could be found for the given starting and ending points.");
       return;
     }
   }
 
   for (let i = 0; i < path.length; i++) {
     const current = path[i];
-    grid[current.y][current.x] = '\x1b[34mX\x1b[0m';
+    grid[current.y][current.x] = `\x1b[34m${calculateArrowDirection(current, path[i - 1])}\x1b[0m`;
   }
 
-  grid[start.y][start.x] = '\x1b[32mS\x1b[0m';
-  grid[goal.y][goal.x] = '\x1b[31mE\x1b[0m';
+  grid[start.y][start.x] = "\x1b[32mS\x1b[0m";
+  grid[goal.y][goal.x] = "\x1b[31mE\x1b[0m";
 
   printGrid();
+
+  console.log(`\nFound solution with ${path.length - 1} steps.`); // subtract one since it includes the goal
 }
 
-function calculateNeighbors(point: Point) {
+function calculateNeighbors(point: Point): Point[] {
   const neighbors = neighborOffsets
     .map((offset) => new Point(point.x + offset[0], point.y + offset[1]))
     .filter((point) => isValid(point));
+
+  if (point.x === 0 && point.y === 0) {
+    //console.log(neighbors);
+    neighbors.forEach((neighbor) => {
+      console.log(neighbor, grid[neighbor.y][neighbor.x]);
+    });
+  }
 
   // Not "strictly" necessary, but makes the path look like the visual on the website
   if ((point.x + point.y) % 2 == 0) neighbors.reverse();
@@ -131,25 +143,36 @@ function calculateNeighbors(point: Point) {
   return neighbors;
 }
 
-function isValid(point: Point) {
+function isValid(point: Point): boolean {
   const { x, y } = point;
-  return (
-    x >= 0 &&
-    y >= 0 &&
-    y < grid.length &&
-    x < grid[0].length &&
-    grid[y][x] === 0
-  );
+  return x >= 0 && y >= 0 && y < grid.length && x < grid[0].length && grid[y][x] === 0;
 }
 
-function heuristic(goal: Point, next: Point) {
+function heuristic(goal: Point, next: Point): number {
   return Math.abs(goal.x - next.x) + Math.abs(goal.y - next.y);
 }
 
 function printGrid(): void {
   grid.forEach((row) => {
-    console.log(row.join(' '));
+    console.log(row.join(" "));
   });
+}
+
+function calculateArrowDirection(current: Point, next: Point | null): string {
+  if (!next) return;
+
+  let x = current.x - next.x;
+  let y = current.y - next.y;
+
+  if (x < 0) {
+    return "⮕";
+  } else if (x > 0) {
+    return "⬅";
+  } else if (y > 0) {
+    return "⬆";
+  } else {
+    return "⬇";
+  }
 }
 
 run();
