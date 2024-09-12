@@ -1,4 +1,5 @@
 # A* Algorithm Implementation
+An implementation of https://www.redblobgames.com/pathfinding/a-star/introduction.html in TypeScript.
 
 # Install
 
