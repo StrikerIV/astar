@@ -130,13 +130,6 @@ function calculateNeighbors(point: Point): Point[] {
     .map((offset) => new Point(point.x + offset[0], point.y + offset[1]))
     .filter((point) => isValid(point));
 
-  if (point.x === 0 && point.y === 0) {
-    //console.log(neighbors);
-    neighbors.forEach((neighbor) => {
-      console.log(neighbor, grid[neighbor.y][neighbor.x]);
-    });
-  }
-
   // Not "strictly" necessary, but makes the path look like the visual on the website
   if ((point.x + point.y) % 2 == 0) neighbors.reverse();
 
